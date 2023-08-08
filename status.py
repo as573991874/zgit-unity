@@ -12,7 +12,7 @@ repo_config_is_init = False
 
 # 初始化状态
 def init():
-    global workspace_is_init, workspace_setting
+    global workspace_is_init, workspace_setting, repo_config_is_init
     workspace_is_init = os.path.exists(utils.__setting_path__)
     if workspace_is_init:
         workspace_setting = read_json_file(utils.__setting_path__)

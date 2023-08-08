@@ -25,6 +25,10 @@ class ZGitCLI(cmd.Cmd):
             print(f"{os.getcwd()} 未初始化")
         else:
             print(f"{status.get_abs_setting_path()} 已初始化")
+            if not status.repo_config_is_init:
+                print(f"配置仓库未拉取")
+            else:
+                print(f"{status.get_abs_repo_config_path()} 配置已拉取")
 
     # 初始化工作区
     def do_init_workspace(self, args):
@@ -55,8 +59,8 @@ cli = ZGitCLI()
 parser = argparse.ArgumentParser(description='A Git Tool For Unity Version Control')
 parser.add_argument('-v', '--version', action='store_true', help='Print tool version')
 parser.add_argument('--status', action='store_true', help='Print WorkSpace Status')
-parser.add_argument('--init_workspace', action='store_true', help='Init WorkSpace Status')
-parser.add_argument('--init_repo_config', action='store_true', help='Init WorkSpace Status')
+parser.add_argument('--init_workspace', action='store_true', help='Init WorkSpace Setting')
+parser.add_argument('--init_repo_config', action='store_true', help='Init Clone Repo Config')
 args = parser.parse_args()
 
 if args.version:
